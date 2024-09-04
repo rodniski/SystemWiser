@@ -16,7 +16,7 @@ export function FeatureSection({
             key={i}
             className={`${
               (word === "Parceiro" || word === "Inovação") &&
-              "text-brand-primary dark:text-brand-secondary"
+              "text-brand-tertiary dark:text-brand-accent"
             }`}
           >
             {word}{" "}

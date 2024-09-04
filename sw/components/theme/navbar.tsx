@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { useScroll } from '@/components/scroll-context'
+import { useScroll } from "@/components/scroll-context";
 import { Menu, X } from "lucide-react";
 import {
   NavigationMenu,
@@ -16,6 +16,7 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
+import { useTheme } from "next-themes";
 
 const components = [
   {
@@ -38,6 +39,7 @@ const components = [
 ];
 
 export function Navbar() {
+  const { theme } = useTheme();
   const { scrollToForm } = useScroll();
   const [scrolled, setScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -79,8 +81,14 @@ export function Navbar() {
           href="/"
           className="text-xl font-bold text-foreground flex items-center"
         >
-          <Image src={"/logo/icon.png"} width={30} height={40} alt="Logo" />
-          <span className="pl-2">System Wiser</span>
+          <Image
+            src={
+              theme === "light" ? "/logo/tcSqDkGrBl.png" : "/logo/tcSqLtGrBl.png" 
+            }
+            width={200}
+            height={40}
+            alt="Logo"
+          />
         </a>
 
         {/* Botão de Menu para Mobile */}
@@ -111,7 +119,7 @@ export function Navbar() {
                       className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md hover:from-primary/10 hover:to-primary/30"
                     >
                       <Image
-                        src={"/icon.png"}
+                        src={"/logo/.png"}
                         width={30}
                         height={40}
                         alt="Logo"

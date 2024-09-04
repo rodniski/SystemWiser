@@ -9,8 +9,10 @@ import Do from "@/public/landingpage/bento1/Do.svg";
 import Growth from "@/public/landingpage/bento1/Growth.svg";
 import Inspire from "@/public/landingpage/bento1/Inspire.svg";
 import { Maximize2, Minimize2 } from "lucide-react"; // Importando ícones de expandir e encolher
+import { useTheme } from "next-themes";
 
 export default function Sobre() {
+  const { theme } = useTheme(); // Hook para acessar o tema atual
   // Estado para armazenar o card ativo (expandido) ou null se nenhum estiver ativo
   const [active, setActive] = useState<(typeof cards)[number] | null>(null);
   const id = useId(); // Gera um ID único para cada instância do componente
@@ -44,12 +46,13 @@ export default function Sobre() {
       <div className="flex justify-center items-center space-x-5 pb-5">
         <h2 className="text-3xl md:text-5xl text-foreground font-bold">Sobre a</h2>
         <Image
-          className="h-14 md:h-fit w-fit object-contain"
-          src={"/logo/squareBlue.png"}
-          alt="systemwiser"
-          height={100}
-          width={200}
-        />
+            src={
+              theme === "light" ? "/logo/brSqDkGrBl.png" : "/logo/brSqLtGrBl.png" 
+            }
+            width={200}
+            height={40}
+            alt="Logo"
+          />
       </div>
 
       {/* Animação para o fundo escurecido ao abrir um card */}

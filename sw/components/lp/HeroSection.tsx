@@ -52,12 +52,12 @@ export function HeroSection() {
         >
           <Image
             src={
-              theme === "dark"
-                ? "/logo/tcLightGreen.png"
-                : "/logo/tcDarkGreen.png"
+              theme === "light"
+                ? "/logo/rdSqDkGrWt.png"
+                : "/logo/rdSqLtGrWt.png"
             }
             alt="Logo"
-            width={400}
+            width={300}
             height={30}
             className="object-contain"
           />

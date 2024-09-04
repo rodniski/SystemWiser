@@ -52,7 +52,7 @@ export default function Services() {
     <div className="flex flex-col justify-center items-center">
       {/* Título da seção de serviços */}
       <h2 className="text-2xl sm:text-3xl md:text-5xl text-foreground font-bold mb-10">
-        Nossos Serviços
+        Nossos <span className="text-brand-tertiary dark:text-brand-accent">Serviços</span>
       </h2>
       
       {/* Contêiner flexível para os serviços, com grade responsiva */}

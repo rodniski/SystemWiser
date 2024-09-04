@@ -61,7 +61,7 @@ export default function RootLayout({
       <body className="bg-background">
         <SpeedInsights />
         <Analytics />
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <ScrollProvider>
             <Navbar />
             {children}

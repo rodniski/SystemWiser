@@ -62,10 +62,10 @@ export function Formulario() {
         <div className="w-full md:w-1/2 flex flex-col justify-center">
           <div className="text-center">
             <h2 className="text-3xl text-foreground font-bold mb-10">
-              <span className="text-brand-accent">Junte-se </span> a Nós e{" "}
+              <span className="text-brand-tertiary dark:text-brand-accent">Junte-se </span> a Nós e{" "}
               <br />
               Faça Seu Negócio{" "}
-              <span className="text-brand-accent">Crescer</span>
+              <span className="text-brand-tertiary dark:text-brand-accent">Crescer</span>
             </h2>
             <p className="text-foreground text-base mb-6">
               Desbloqueie novas oportunidades e impulsione o crescimento ao se
@@ -172,7 +172,7 @@ export function Formulario() {
                   </FormItem>
                 )}
               />
-              <Button type="submit" className="text-lg w-full">
+              <Button type="submit" className="text-lg dark:text-black w-full bg-brand-tertiary dark:bg-brand-accent">
                 Enviar
               </Button>
             </form>
