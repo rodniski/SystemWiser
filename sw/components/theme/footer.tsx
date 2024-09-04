@@ -5,7 +5,7 @@ import Image from "next/image";
 
 const Footer = () => {
   return (
-    <footer className="bg-zinc-950 flex flex-col justify-center items-center">
+    <footer className="bg-zinc-50 dark:bg-zinc-950 flex flex-col justify-center items-center">
       <div className="py-10 w-full text-center px-6 md:px-24">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8 pb-5">
           <div className="flex flex-col md:flex-row items-center justify-center gap-4">
@@ -15,6 +15,7 @@ const Footer = () => {
                 width={150}
                 height={75}
                 alt="Logo"
+                className="invert dark:invert-0"
               />
               <p className="text-foreground/60 text-center">Sua vantagem tecnológica.</p>
             </div>
@@ -76,7 +77,7 @@ const Footer = () => {
         </div>
         <Separator />
         <div className="pt-5">
-          <p className="text-sm text-white">
+          <p className="text-sm text-foreground">
             © 2024 System Wiser. Todos os direitos reservados.
           </p>
         </div>
