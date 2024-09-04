@@ -15,10 +15,10 @@ export function HeroSection() {
   
   const words = [
     {
-      text: "sua",
+      text: "Sua",
     },
     {
-      text: "vantagem",
+      text: "Vantagem",
     },
     {
       text: "Tecnológica.",

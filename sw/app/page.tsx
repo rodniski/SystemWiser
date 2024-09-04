@@ -65,7 +65,7 @@ export default function Page() {
 
       {/* Companies Section
       <AnimatedSection>
-        <Companies />
+        <Companies />k
       </AnimatedSection>*/}
 
       {/* Tracing Beam começa a partir da seção Companies */}
