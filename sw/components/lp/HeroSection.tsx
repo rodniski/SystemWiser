@@ -59,6 +59,7 @@ export function HeroSection() {
             alt="Logo"
             width={400}
             height={30}
+            className="object-contain"
           />
         </motion.div>
         <TypewriterEffect words={words} />
