@@ -138,11 +138,11 @@ export function Navbar() {
                 </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>
-            <NavigationMenuItem>
+            {/* <NavigationMenuItem>
               <a href="/testimonials" className={navigationMenuTriggerStyle()}>
                 Depoimentos
               </a>
-            </NavigationMenuItem>
+            </NavigationMenuItem>*/}
             <NavigationMenuItem>
               <a href="/contact" className={navigationMenuTriggerStyle()}>
                 Contato
@@ -182,9 +182,9 @@ export function Navbar() {
           <a href="/services/cybersecurity" className="py-2 text-sm">
             Cibersegurança
           </a>
-          <a href="/testimonials" className="py-2 text-sm">
+          {/*<a href="/testimonials" className="py-2 text-sm">
             Depoimentos
-          </a>
+          </a>*/}
           <a onClick={scrollToForm} className="py-2 text-sm">
             Contato
           </a>

@@ -63,10 +63,10 @@ export default function Page() {
         <HeroSection />
       </AnimatedSection>
 
-      {/* Companies Section */}
+      {/* Companies Section
       <AnimatedSection>
         <Companies />
-      </AnimatedSection>
+      </AnimatedSection>*/}
 
       {/* Tracing Beam começa a partir da seção Companies */}
       <AuroraLeft>
