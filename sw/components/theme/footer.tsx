@@ -5,13 +5,13 @@ import Image from "next/image";
 
 const Footer = () => {
   return (
-    <footer className="bg-zinc-50 dark:bg-zinc-950 flex flex-col justify-center items-center">
+    <footer className="bg-zinc-50 w-screen dark:bg-zinc-950 flex flex-col justify-center items-center">
       <div className="py-10 w-full text-center px-6 md:px-24">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8 pb-5">
           <div className="flex flex-col md:flex-row items-center justify-center gap-4">
             <div className="flex flex-col justify-center items-center gap-4">
               <Image
-                src={"/logo/square.png"}
+                src={"/logo/brSqWt.png"}
                 width={150}
                 height={75}
                 alt="Logo"
