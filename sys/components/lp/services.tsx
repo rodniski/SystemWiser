@@ -1,5 +1,7 @@
 "use client";
 import { servicesData } from "@/constants/lp";
+import { Button } from "../ui/button";
+import { IconOutbound } from "@tabler/icons-react";
 
 export default function Services() {
   // Dados para os itens, incluindo título, descrição, ícone, cor e efeito de neon
@@ -13,22 +15,30 @@ export default function Services() {
       </h2>
 
       {/* Contêiner flexível para os serviços, com grade responsiva */}
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-6 m-8 lg:grid-cols-5">
+      <div className="flex flex-wrap items-center justify-center gap-6 m-8">
         {/* Mapeamento dos dados para criar cada serviço */}
         {servicesData.map((service, index) => (
-          <div key={index} className="flex flex-col items-center text-center">
+          <div
+            key={index}
+            className="h-full w-72 border border-blue-600 rounded-xl p-3 flex flex-col items-center justify-start text-center gap-3"
+          >
             {/* Ícone do serviço com efeito de neon */}
             <div className="w-14 h-14 sm:w-16 sm:h-16 mb-4 relative flex justify-center items-center">
               <service.icon className="dark:text-cyan-200 text-cyan-700 w-full h-full filter drop-shadow-[0_0_5px_#00d2ff]" />
             </div>
 
             {/* Título e descrição do serviço */}
-            <h3 className="font-bold h-16 text-lg sm:text-lg md:text-xl text-foreground mb-2">
+            <h3 className="font-bold text-lg text-foreground">
               {service.title}
             </h3>
-            <p className="font-normal text-sm sm:text-base text-muted-foreground">
+            <p className="font-normal text-base text-muted-foreground">
               {service.description}
             </p>
+            <Button variant={"ghost"} className="border-blue-500">
+              <a className="flex gap-4 items-center" href={service.href}>
+                Ver Mais <IconOutbound className="size-5" />
+              </a>
+            </Button>
           </div>
         ))}
       </div>
