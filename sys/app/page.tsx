@@ -1,37 +1,55 @@
 "use client";
-import Hero from "@/components/lp/hero";
 import dynamic from "next/dynamic";
+import Head from "next/head";
 import React from "react";
 
-// Importação dinâmica com feedback
-const Sobre = dynamic(() => import("@/components/lp/Sobre"), { ssr: true });
+// Importação dinâmica dos componentes
+const Hero = dynamic(() => import("@/components/lp/hero"), {
+  ssr: false,
+});
+const Sobre = dynamic(() => import("@/components/lp/Sobre"), {
+  ssr: false,
+});
 const Services = dynamic(() => import("@/components/lp/services"), {
-  ssr: true,
+  ssr: false,
 });
-const Form = dynamic(() => import("@/components/lp/form"), {
-  ssr: true,
+const Formulario = dynamic(() => import("@/components/lp/form"), {
+  ssr: false,
 });
 
-
-const Page = () => {
+const page = () => {
   return (
-    <div className="flex flex-col justify-center items-center h-full w-full">
-      <div className="w-full">
+    <>
+      <Head>
+        <title>System Wiser</title>
+        <meta
+          name="description"
+          content="Explore our software services and solutions."
+        />
+        <link
+          rel="preload"
+          href="/fonts/myfont.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+      </Head>
+      <section aria-labelledby="hero-section">
         <Hero />
-      </div>
-      <div className="px-32 flex flex-col gap-20 w-full">
-        <div className="w-full">
-          <Services />
-        </div>
-        <div className="w-full">
+      </section>{" "}
+      <div className="px-36 flex flex-col gap-24">
+        <section aria-labelledby="Sobre-section">
           <Sobre />
-        </div>
+        </section>
+        <section aria-labelledby="services-section">
+          <Services />
+        </section>
+        <section aria-labelledby="form-section">
+          <Formulario />
+        </section>
       </div>
-      <div className="w-full px-32 pt-5 flex flex-col">
-        <Form />
-      </div>
-    </div>
+    </>
   );
 };
 
-export default Page;
+export default page;
