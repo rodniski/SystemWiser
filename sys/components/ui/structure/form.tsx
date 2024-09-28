@@ -22,7 +22,7 @@ import {
   SelectGroup,
   SelectItem,
 } from "@/components/ui/select";
-import { Input } from "../ui/input";
+import { Input } from "../input";
 
 // Definindo a tipagem do formulário
 const formSchema = z.object({

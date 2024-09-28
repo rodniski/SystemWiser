@@ -5,13 +5,13 @@ import React from "react";
 import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";
 import { bentoItems } from "@/constants/software"; // Atualize o caminho conforme necessário
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
-import { ShootingStars } from "@/components/ui/shooting-stars";
-import { StarsBackground } from "@/components/ui/stars-background";
+import ShootingStars from "@/components/ui/shooting-stars";
+import StarsBackground from "@/components/ui/stars-background";
 
 const Bento = () => {
   return (
     <section className="relative flex flex-col items-stretch min-h-screen text-whiteManuten">
-      <BentoGrid className="my-10 gap-6">
+      <BentoGrid className="my-10 gap-6 z-50">
         {bentoItems.map((item) => (
           <BentoGridItem
             key={item.id}

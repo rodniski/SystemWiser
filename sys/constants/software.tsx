@@ -1,11 +1,28 @@
-// constants/software.ts
+//HERO SECTION
+export const softwareHeroContent = {
+  subtitle: "Desenvolvimento personalizado para levar o seu negócio ao próximo nível",
+  title: (
+    <>
+      Soluções digitais personalizadas para{" "}
+      <span className="bg-clip-text text-transparent bg-gradient-to-b from-sky-800 to-sky-600 dark:from-sky-200 dark:to-sky-500">
+        impulsionar o seu negócio.
+      </span>
+    </>
+  ),
+  description:
+    "Desenvolvimento personalizado para levar o seu negócio ao próximo nível",
+  ctaText: "Fale com a gente",
+  lottieSrc: "/lottie/software/hero.lottie",
+  additionalClasses: "", // Classes adicionais se necessário
+  isAnimated: true, // Flag para animações específicas
+};
 
+// SERVICES
 export interface Service {
   id: string;
   title: string;
   description: string;
 }
-
 export const servicesData: Service[] = [
   {
     id: "applicativos-personalizados",
@@ -33,6 +50,7 @@ export const servicesData: Service[] = [
   },
 ];
 
+//BENTOBOX
 import {
   IconClipboardCopy,
   IconFileBroken,
@@ -50,7 +68,6 @@ export interface Bento {
   lottie: string;
   icon: React.ReactNode;
 }
-
 export const bentoItems: Bento[] = [
   {
     id: "manutencao-suporte",

@@ -1,19 +1,32 @@
 "use client";
+
+import { servicesData, softwareHeroContent } from "@/constants/software";
 import dynamic from "next/dynamic";
 import Head from "next/head";
 import React from "react";
 
 // Importação dinâmica dos componentes
-const HeroSection = dynamic(() => import("@/components/software/hero"), {
+
+const Hero = dynamic(() => import("@/components/ui/structure/hero"), {
   ssr: false,
 });
-const Services = dynamic(() => import("@/components/software/services"), {
+const ShootingStars = dynamic(() => import("@/components/ui/shooting-stars"), {
+  ssr: false,
+});
+const StarsBackground = dynamic(
+  () => import("@/components/ui/stars-background"),
+  {
+    ssr: false,
+  }
+);
+
+const Services = dynamic(() => import("@/components/ui/structure/services"), {
   ssr: false,
 });
 const Bento = dynamic(() => import("@/components/software/bento"), {
   ssr: false,
 });
-const Formulario = dynamic(() => import("@/components/lp/form"), {
+const Formulario = dynamic(() => import("@/components/ui/structure/form"), {
   ssr: false,
 });
 
@@ -36,11 +49,19 @@ const page = () => {
       </Head>
       <div>
         <section aria-labelledby="hero-section">
-          <HeroSection />
+          <Hero
+            subtitle={softwareHeroContent.subtitle}
+            title={softwareHeroContent.title}
+            description={softwareHeroContent.description}
+            ctaText={softwareHeroContent.ctaText}
+            lottieSrc={softwareHeroContent.lottieSrc}
+          />{" "}
+          <ShootingStars />
+          <StarsBackground />
         </section>
 
         <section aria-labelledby="services-section">
-          <Services />
+        <Services servicesData={servicesData} isLandingPage={false} enableAnimation={true} />
         </section>
 
         <section aria-labelledby="bento-section">
