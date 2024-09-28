@@ -20,7 +20,7 @@ export const servicesData: ServiceData[] = [
     description:
       "Desenvolvimento de aplicações robustas e escaláveis para atender às necessidades do seu negócio.",
     icon: IconCode,
-    href: "/software",
+    href: "https://system-wiser.vercel.app/software",
   },
   {
     title: "Gerenciamento de Projetos",

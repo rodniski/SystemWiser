@@ -8,7 +8,7 @@ import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { ShootingStars } from "@/components/ui/shooting-stars";
 import { StarsBackground } from "@/components/ui/stars-background";
 
-export function Bento() {
+const Bento = () => {
   return (
     <section className="relative flex flex-col items-stretch min-h-screen text-whiteManuten">
       <BentoGrid className="my-10 gap-6">
@@ -19,7 +19,9 @@ export function Bento() {
             description={item.description}
             icon={item.icon} // Passando o ícone para a prop 'icon'
             header={
-              <div className="w-full h-40"> {/* Ajuste conforme necessário */}
+              <div className="w-full h-40">
+                {" "}
+                {/* Ajuste conforme necessário */}
                 <DotLottieReact
                   src={item.lottie}
                   loop
@@ -30,7 +32,11 @@ export function Bento() {
                 />
               </div>
             }
-            className={item.id === "integracao-sistemas" || item.id === "design-ux-ui" ? "md:col-span-2" : ""}
+            className={
+              item.id === "integracao-sistemas" || item.id === "design-ux-ui"
+                ? "md:col-span-2"
+                : ""
+            }
           />
         ))}
       </BentoGrid>
@@ -39,4 +45,5 @@ export function Bento() {
       <StarsBackground />
     </section>
   );
-}
+};
+export default Bento;
