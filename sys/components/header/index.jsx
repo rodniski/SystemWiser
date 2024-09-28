@@ -8,7 +8,6 @@ import Link from "next/link";
 import Logo from "@/components/ui/logo"; // Importe o novo componente Logo
 import { navbar } from "@/constants/navbar"; // Supondo que seus dados de navegação estejam nesse arquivo
 import { ModeToggle } from "./toggle";
-import { Button } from "@/components/ui/button";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);

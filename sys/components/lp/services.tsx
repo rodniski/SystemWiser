@@ -10,9 +10,7 @@ export default function Services() {
       {/* Título da seção de serviços */}
       <h2 className="text-2xl text-start w-full sm:text-3xl md:text-5xl text-foreground font-bold mb-10">
         Nossos{" "}
-        <span className="text-blue-500 dark:text-brand-accent">
-          Serviços
-        </span>
+        <span className="text-blue-500 dark:text-brand-accent">Serviços</span>
       </h2>
 
       {/* Contêiner flexível para os serviços, com grade responsiva */}
@@ -27,7 +25,7 @@ export default function Services() {
 
             {/* Título e descrição do serviço */}
             <h3 className="font-bold h-16 text-lg sm:text-lg md:text-xl text-foreground mb-2">
-              <LinkPreview url={service.href} className="font-bold">
+              <LinkPreview url={service.href || "#"} className="font-bold">
                 {service.title}
               </LinkPreview>{" "}
             </h3>
