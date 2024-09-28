@@ -1,6 +1,5 @@
 "use client";
 import { servicesData } from "@/constants/lp";
-import { LinkPreview } from "../ui/link-preview";
 
 export default function Services() {
   // Dados para os itens, incluindo título, descrição, ícone, cor e efeito de neon
@@ -25,9 +24,7 @@ export default function Services() {
 
             {/* Título e descrição do serviço */}
             <h3 className="font-bold h-16 text-lg sm:text-lg md:text-xl text-foreground mb-2">
-              <LinkPreview url={service.href || "#"} className="font-bold">
-                {service.title}
-              </LinkPreview>{" "}
+              {service.title}
             </h3>
             <p className="font-normal text-sm sm:text-base text-muted-foreground">
               {service.description}
