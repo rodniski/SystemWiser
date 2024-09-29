@@ -12,11 +12,9 @@ interface LogoProps {
 const Logo: React.FC<LogoProps> = ({
   alt = "System Wiser Logo",
   className,
-  width = 650, // Ajuste conforme necessário
-  height = 420, // Ajuste conforme necessário
+  width = 350,
+  height = 75,
 }) => {
-
-
   return (
     <Image
       src="/logo/brSqDkBl.png"
