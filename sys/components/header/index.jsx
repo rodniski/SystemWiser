@@ -10,6 +10,7 @@ import { ModeToggle } from "./toggle";
 import Image from "next/image";
 import { IconPhone } from "@tabler/icons-react";
 import { Button } from "../ui/button";
+
 // Definindo as PropTypes
 const Logo = memo(({ alt, width, height, className }) => {
   return (
@@ -120,6 +121,7 @@ const Header = () => {
         variants={menuVariants}
         className="fixed top-0 left-0 w-screen h-screen bg-white dark:bg-black flex flex-col items-center justify-center z-40"
         style={{ willChange: "transform" }}
+        role="menu" // Define o papel do menu aqui
       >
         <a href="/">
           <Logo
@@ -136,14 +138,15 @@ const Header = () => {
         >
           {navbar.map((item) => (
             <motion.li key={item.id} variants={itemVariants}>
-              <Link href={item.href}>
-                <p
+              <Link href={item.href} role="menuitem">
+                {" "}
+                {/* Corrigido para <Link> com role adequado */}
+                <a
                   onClick={() => setIsOpen(false)}
                   className="text-2xl sm:text-3xl md:text-4xl font-bold font-mono dark:text-primary text-black hover:italic transition"
-                  role="menuitem"
                 >
                   {item.title}
-                </p>
+                </a>
               </Link>
             </motion.li>
           ))}
