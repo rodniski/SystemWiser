@@ -1,11 +1,12 @@
+// components/Formulario.jsx
 "use client";
-
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm, SubmitHandler } from "react-hook-form";
-import { z } from "zod";
-import { DotLottieReact } from "@lottiefiles/dotlottie-react";
+import * as z from "zod";
+
+// Importações dos componentes do shadcn/ui
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import {
   Form,
   FormControl,
@@ -22,165 +23,178 @@ import {
   SelectGroup,
   SelectItem,
 } from "@/components/ui/select";
-import { Input } from "../input";
+import { Input } from "@/components/ui/input";
+import { Card } from "../card";
 
-// Definindo a tipagem do formulário
+// Definição do esquema de validação usando Zod
 const formSchema = z.object({
-  nome: z.string().min(2, {
-    message: "Nome deve ter pelo menos 2 caracteres.",
-  }),
-  email: z.string().email({
-    message: "Por favor, insira um endereço de e-mail válido.",
-  }),
-  empresa: z.string().min(2, {
-    message: "Nome da empresa deve ter pelo menos 2 caracteres.",
-  }),
-  interesse: z.string().min(1, {
-    message: "Selecione uma área de interesse.",
-  }),
+  nome: z.string().min(1, "Nome é obrigatório"),
+  email: z.string().email("E-mail inválido"),
+  empresa: z.string().optional(),
+  interesse: z.string().min(1, "Selecione uma área de interesse"),
   mensagem: z.string().optional(),
 });
 
-type FormSchema = z.infer<typeof formSchema>;
-
 function Formulario() {
-  const form = useForm<FormSchema>({
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [message, setMessage] = useState("");
+
+  // Inicialização do React Hook Form com o resolver do Zod
+  const form = useForm({
     resolver: zodResolver(formSchema),
+    defaultValues: {
+      nome: "",
+      email: "",
+      empresa: "",
+      interesse: "",
+      mensagem: "",
+    },
   });
 
-  const onSubmit: SubmitHandler<FormSchema> = (data) => {
-    console.log("Formulário enviado", data);
-    // Lógica para enviar os dados do formulário
+  const onSubmit = async (data: z.infer<typeof formSchema>) => {
+    setIsSubmitting(true);
+    setMessage("");
+
+    try {
+      const response = await fetch("/api/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        setMessage("Formulário enviado com sucesso!");
+        form.reset(); // Limpar o formulário
+      } else {
+        setMessage("Erro ao enviar o formulário.");
+      }
+    } catch (error) {
+      console.error("Erro ao enviar o formulário:", error);
+      setMessage("Erro ao enviar o formulário.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
-    <div className="flex flex-col justify-center items-center p-5">
-      {/* Título da seção de serviços */}
-      <h2 className="text-start w-full text-2xl sm:text-3xl md:text-5xl text-foreground font-bold mb-10">
-        Fale com a {" "}
-        <span className="text-blue-500 dark:text-brand-accent">
-          Gente
-        </span>
-      </h2>
-      <Card className="flex flex-col md:flex-row items-center justify-between w-full mx-auto  rounded-lg p-2 md:p-8 md:space-x-6">
-        <div className="w-full md:w-1/2 flex flex-col justify-center">
-          <div className="text-center">
-            <p className="text-foreground text-xl">
-              Desbloqueie novas oportunidades e impulsione o crescimento ao se
-              tornar nosso parceiro. Preencha o formulário para começar sua
-              jornada com a System Wiser.
-            </p>
-          </div>
-          <DotLottieReact
-            src="/lottie/lp/contact.lottie"
-            loop
-            autoplay
-            width={200}
-            height={200}
-          />{" "}
-        </div>
-
-        <CardContent className="w-full md:w-1/2">
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-              <FormField
-                control={form.control}
-                name="nome"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Nome Completo</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Seu Nome" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Endereço de E-mail</FormLabel>
-                    <FormControl>
-                      <Input placeholder="seuemail@exemplo.com" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="empresa"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Nome da Empresa</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Sua Empresa" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="interesse"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Área de Interesse</FormLabel>
-                    <FormControl>
-                      <Select {...field}>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Selecione a sua dor" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectGroup>
-                            <SelectItem value="powerbi">PowerBI</SelectItem>
-                            <SelectItem value="projetos">
-                              Gestão de Projetos
-                            </SelectItem>
-                            <SelectItem value="software">
-                              Desenvolvimento de Software
-                            </SelectItem>
-                            <SelectItem value="segurança">
-                              Suporte On Demand
-                            </SelectItem>
-                            <SelectItem value="consultoria">
-                              Consultoria em TI
-                            </SelectItem>
-                          </SelectGroup>
-                        </SelectContent>
-                      </Select>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="mensagem"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Mensagem</FormLabel>
-                    <FormControl>
-                      <textarea
-                        className="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                        placeholder="Fale mais sobre suas necessidades"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <Button type="submit" variant={"default"} className="w-full">
-                Enviar
-              </Button>
-            </form>
-          </Form>
-        </CardContent>
-      </Card>
-    </div>
+    <Card className="max-w-3xl  p-8 h-full backdrop-blur-md	bg-background/50 border-cyan-500">
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 ">
+          {/* Campo Nome */}
+          <FormField
+            control={form.control}
+            name="nome"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Nome Completo</FormLabel>
+                <FormControl>
+                  <Input placeholder="Seu Nome" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          {/* Campo Email */}
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Endereço de E-mail</FormLabel>
+                <FormControl>
+                  <Input placeholder="seuemail@exemplo.com" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          {/* Campo Empresa */}
+          <FormField
+            control={form.control}
+            name="empresa"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Nome da Empresa</FormLabel>
+                <FormControl>
+                  <Input placeholder="Sua Empresa" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          {/* Campo Interesse */}
+          <FormField
+            control={form.control}
+            name="interesse"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Área de Interesse</FormLabel>
+                <FormControl>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder="Selecione a sua área" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectGroup>
+                        <SelectItem value="powerbi">PowerBI</SelectItem>
+                        <SelectItem value="projetos">
+                          Gestão de Projetos
+                        </SelectItem>
+                        <SelectItem value="software">
+                          Desenvolvimento de Software
+                        </SelectItem>
+                        <SelectItem value="suporte">
+                          Suporte On Demand
+                        </SelectItem>
+                        <SelectItem value="consultoria">
+                          Consultoria em TI
+                        </SelectItem>
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          {/* Campo Mensagem */}
+          <FormField
+            control={form.control}
+            name="mensagem"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Mensagem</FormLabel>
+                <FormControl>
+                  <textarea
+                    className="min-h-[80px] w-full rounded-md border border-cyan-500 bg-background px-3 py-2 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+                    placeholder="Fale mais sobre suas necessidades"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          {/* Botão Enviar */}
+          <Button
+            type="submit"
+            variant="default"
+            className="w-full"
+            aria-label="Enviar formulário"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? "Enviando..." : "Enviar"}
+          </Button>
+          {message && <p className="mt-2 text-center">{message}</p>}
+        </form>
+      </Form>{" "}
+    </Card>
   );
 }
+
 export default Formulario;

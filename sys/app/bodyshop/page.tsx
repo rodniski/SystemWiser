@@ -18,12 +18,6 @@ const Feature = dynamic(() => import("@/components/ui/structure/feature"), {
 const BentoSection = dynamic(() => import("@/components/ui/structure/bento"), {
   ssr: false,
 });
-const Timeline = dynamic(() => import("@/components/ui/structure/timeline"), {
-  ssr: false,
-});
-const Formulario = dynamic(() => import("@/components/ui/structure/form"), {
-  ssr: false,
-});
 
 const BodyShopPage = () => {
   return (
@@ -33,6 +27,10 @@ const BodyShopPage = () => {
         <meta
           name="description"
           content="Conheça nossos serviços de alocação de profissionais especializados em TI, suporte e gerenciamento de projetos."
+        />
+        <meta
+          name="keywords"
+          content="bodyshop, alocação de profissionais, gerenciamento de projetos, suporte TI, equipe temporária"
         />
       </Head>
       {/* Hero Section */}
@@ -47,13 +45,14 @@ const BodyShopPage = () => {
           lottieData={bodyshopHeroContent.lottieData} // Caso a animação seja JSON
         />
       </section>
-      {/* BodyShop Explanation Section */}{" "}
-      <div className="px-36 flex flex-col gap-24">
-        <section className="pb-16 px-8 md:px-16 text-center">
+
+      {/* BodyShop Explanation Section */}
+      <div className="px-6 sm:px-10 md:px-16 lg:px-36 flex flex-col gap-16 md:gap-24">
+        <section className="pb-16 text-center">
           <h2 className="text-2xl md:text-4xl font-bold text-black dark:text-white mb-6">
             O Que é BodyShop?
           </h2>
-          <div className="text-lg md:text-2xl text-gray-700 dark:text-gray-300 space-y-4">
+          <div className="text-base md:text-lg lg:text-2xl text-gray-700 dark:text-gray-300 space-y-4">
             <p>
               BodyShop é o modelo de alocação temporária de profissionais, onde
               fornecemos talentos especializados para atender a demandas
@@ -69,7 +68,6 @@ const BodyShopPage = () => {
             </p>
           </div>
         </section>
-        {/* Main Content with Features and Services */}
 
         {/* Features Section */}
         <section aria-labelledby="features-section">
@@ -82,11 +80,6 @@ const BodyShopPage = () => {
         {/* Bento Section (Services) */}
         <section aria-labelledby="services-section">
           <BentoSection bentoItems={bodyshopBentoItems} />
-        </section>
-
-        {/* Form Section */}
-        <section aria-labelledby="form-section">
-          <Formulario />
         </section>
       </div>
     </>

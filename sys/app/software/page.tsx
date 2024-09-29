@@ -30,11 +30,8 @@ const Services = dynamic(() => import("@/components/ui/structure/services"), {
 const BentoSection = dynamic(() => import("@/components/ui/structure/bento"), {
   ssr: false,
 });
-const Formulario = dynamic(() => import("@/components/ui/structure/form"), {
-  ssr: false,
-});
 
-const page = () => {
+const SoftwarePage = () => {
   return (
     <>
       <Head>
@@ -52,19 +49,22 @@ const page = () => {
         />
       </Head>
       <div>
-        <section aria-labelledby="hero-section">
+        <section aria-labelledby="hero-section" className="relative">
           <Hero
             subtitle={softwareHeroContent.subtitle}
             title={softwareHeroContent.title}
             description={softwareHeroContent.description}
             ctaText={softwareHeroContent.ctaText}
             lottieSrc={softwareHeroContent.lottieSrc}
-          />{" "}
+          />
           <ShootingStars />
           <StarsBackground />
         </section>
 
-        <section aria-labelledby="services-section">
+        <section
+          aria-labelledby="services-section"
+          className="px-4 sm:px-6 md:px-8 py-12"
+        >
           <Services
             servicesData={servicesData}
             isLandingPage={false}
@@ -72,16 +72,15 @@ const page = () => {
           />
         </section>
 
-        <section aria-labelledby="bento-section">
+        <section
+          aria-labelledby="bento-section"
+          className="px-4 sm:px-6 md:px-8 py-12"
+        >
           <BentoSection bentoItems={bentoItems} />
-        </section>
-
-        <section aria-labelledby="form-section">
-          <Formulario />
         </section>
       </div>
     </>
   );
 };
 
-export default page;
+export default SoftwarePage;

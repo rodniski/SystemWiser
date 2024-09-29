@@ -6,7 +6,6 @@ import React from "react";
 
 // Importação dinâmica dos componentes
 const Hero = dynamic(() => import("@/components/ui/structure/hero"), {
-  // Ajuste o caminho aqui
   ssr: false,
 });
 const Feature = dynamic(() => import("@/components/ui/structure/feature"), {
@@ -15,18 +14,15 @@ const Feature = dynamic(() => import("@/components/ui/structure/feature"), {
 const Services = dynamic(() => import("@/components/ui/structure/services"), {
   ssr: false,
 });
-const Formulario = dynamic(() => import("@/components/ui/structure/form"), {
-  ssr: false,
-});
 
-const page = () => {
+const Page = () => {
   return (
     <>
       <Head>
         <title>System Wiser</title>
         <meta
           name="description"
-          content="Explore our software services and solutions."
+          content="Explore nossos serviços de software e soluções personalizadas."
         />
         <link
           rel="preload"
@@ -36,6 +32,8 @@ const page = () => {
           crossOrigin="anonymous"
         />
       </Head>
+
+      {/* Hero Section */}
       <section aria-labelledby="hero-section">
         <Hero
           subtitle={homeHeroContent.subtitle}
@@ -44,11 +42,16 @@ const page = () => {
           ctaText={homeHeroContent.ctaText}
           lottieSrc={homeHeroContent.lottieSrc}
         />
-      </section>{" "}
-      <div className="px-36 flex flex-col gap-24">
+      </section>
+
+      {/* Main Content with Features and Services */}
+      <div className="px-4 md:px-12 lg:px-24 xl:px-36 flex flex-col gap-16 md:gap-24">
+        {/* Feature Section */}
         <section aria-labelledby="Sobre-section">
           <Feature features={philosophy} sectionTitle="Quem Somos" />
         </section>
+
+        {/* Services Section */}
         <section aria-labelledby="services-section">
           <Services
             servicesData={servicesData}
@@ -56,12 +59,9 @@ const page = () => {
             enableAnimation={true}
           />
         </section>
-        <section aria-labelledby="form-section">
-          <Formulario />
-        </section>
       </div>
     </>
   );
 };
 
-export default page;
+export default Page;

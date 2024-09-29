@@ -4,11 +4,12 @@ import React, { useState, memo } from "react";
 import { motion } from "framer-motion";
 import { Sling as Hamburger } from "hamburger-react";
 import Link from "next/link";
-import PropTypes from "prop-types"; // Importa PropTypes
+import PropTypes from "prop-types";
 import { navbar } from "@/constants/navbar";
 import { ModeToggle } from "./toggle";
 import Image from "next/image";
-
+import { IconPhone } from "@tabler/icons-react";
+import { Button } from "../ui/button";
 // Definindo as PropTypes
 const Logo = memo(({ alt, width, height, className }) => {
   return (
@@ -18,13 +19,13 @@ const Logo = memo(({ alt, width, height, className }) => {
       width={width}
       height={height}
       className={className}
+      priority // Carrega o logo com prioridade para melhorar o desempenho
     />
   );
 });
 
 Logo.displayName = "Logo";
 
-// Definindo PropTypes
 Logo.propTypes = {
   alt: PropTypes.string.isRequired,
   width: PropTypes.number.isRequired,
@@ -83,40 +84,51 @@ const Header = () => {
   };
 
   return (
-    <header className="fixed top-0 left-0 w-full h-20 backdrop-blur-xl border-b border-zinc-200 dark:border-border shadow-sm text-foreground flex justify-between items-center px-6 md:px-12 z-50">
-      <div className="text-xl font-bold w-24">
-        <Logo
-          alt="System Wiser Logo"
-          width={100}
-          height={50}
-          className="w-20"
-        />
+    <header className="fixed top-0 left-0 w-full h-20 md:h-24 backdrop-blur-xl border-b border-zinc-200 dark:border-border shadow-sm text-foreground flex justify-between items-center px-6 md:px-12 z-50">
+      <div className="text-xl font-bold w-24 md:w-36">
+        <a href="/">
+          <Logo
+            alt="System Wiser Logo"
+            width={100}
+            height={50}
+            className="w-20 lg:w-36"
+          />
+        </a>
       </div>
 
       <div className="z-50 flex items-center justify-center">
+        <Button variant={"ghost"} size={"Icon"} className="p-2">
+          <a href="/contact">
+            <IconPhone />
+          </a>
+        </Button>
         <ModeToggle />
-        <Hamburger
-          toggled={isOpen}
-          toggle={setIsOpen}
-          size={20}
-          duration={0.5}
-          aria-label="Abrir menu de navegação"
-        />
+        <div className="z-50">
+          <Hamburger
+            toggled={isOpen}
+            toggle={setIsOpen}
+            size={20}
+            duration={0.5}
+            aria-label="Abrir menu de navegação"
+          />
+        </div>
       </div>
 
       <motion.nav
         initial="closed"
         animate={isOpen ? "opened" : "closed"}
         variants={menuVariants}
-        className="fixed top-0 left-0 w-screen h-screen bg-white dark:bg-black flex flex-col items-center justify-center"
+        className="fixed top-0 left-0 w-screen h-screen bg-white dark:bg-black flex flex-col items-center justify-center z-40"
         style={{ willChange: "transform" }}
       >
-        <Logo
-          alt="System Wiser Logo"
-          width={350}
-          height={75}
-          className="w-36 absolute top-9"
-        />
+        <a href="/">
+          <Logo
+            alt="System Wiser Logo"
+            width={350}
+            height={75}
+            className="w-36 absolute top-9"
+          />
+        </a>
 
         <motion.ul
           variants={containerVariants}
@@ -127,7 +139,7 @@ const Header = () => {
               <Link href={item.href}>
                 <p
                   onClick={() => setIsOpen(false)}
-                  className="text-5xl font-bold font-mono dark:text-primary text-black hover:italic transition"
+                  className="text-2xl sm:text-3xl md:text-4xl font-bold font-mono dark:text-primary text-black hover:italic transition"
                   role="menuitem"
                 >
                   {item.title}

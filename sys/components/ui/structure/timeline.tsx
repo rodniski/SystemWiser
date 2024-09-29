@@ -39,29 +39,29 @@ const Timeline = ({ data }: { data: TimelineEntry[] }) => {
         {data.map((item, index) => (
           <div
             key={index}
-            className="flex justify-start pt-10 md:pt-40 md:gap-10"
+            className="flex flex-col md:flex-row justify-start pt-10 md:pt-40 md:gap-10"
           >
-            {/* Lado esquerdo: Título ao lado da bolinha */}
-            <div className="sticky flex flex-col md:flex-row z-40 items-center top-40 self-start max-w-xs lg:max-w-sm md:w-full">
-              {/* Bolinha */}
-              <div className="h-10 absolute left-3 md:left-3 w-10 rounded-full bg-white dark:bg-black flex items-center justify-center filter drop-shadow-[0_0_6px_#00d2ff]">
+            {/* Bolinha e Título removidos em telas menores */}
+            <div className="md:sticky md:flex md:flex-row z-40 items-center md:top-40 self-start max-w-xs lg:max-w-sm md:w-full">
+              {/* Bolinha só em telas maiores */}
+              <div className="hidden md:flex h-10 absolute left-3 md:left-3 w-10 rounded-full bg-white dark:bg-black flex items-center justify-center filter drop-shadow-[0_0_6px_#00d2ff]">
                 <div className="h-4 w-4 rounded-full dark:bg-cyan-200 bg-cyan-800 border border-neutral-300 dark:border-neutral-700 p-2" />
               </div>
-              {/* Título ao lado da bolinha */}
-              <h3 className="text-xl md:pl-20 md:text-5xl font-bold text-cyan-800 dark:text-cyan-500 ">
-                {item.title}
-              </h3>
+              {/* Título com ícone ao lado em telas menores */}
+              <div className="flex items-center gap-4">
+                {item.icon}
+                <h3 className="text-xl md:pl-20 md:text-5xl font-bold text-cyan-800 dark:text-cyan-500 md:sticky md:top-40">
+                  {item.title}
+                </h3>
+              </div>
             </div>
 
-            {/* Lado direito: Ícone, subtítulo e conteúdo */}
-            <div className="relative pl-20 pr-4 md:pl-4 w-full">
-              {/* Ícone e subtítulo */}
-              <div className="flex items-center gap-4 mb-4">
-                {item.icon}
-                <h4 className="text-lg font-semibold text-neutral-800 dark:text-neutral-300">
-                  {item.subtitle}
-                </h4>
-              </div>
+            {/* Lado direito: Subtítulo e conteúdo */}
+            <div className="relative pl-0 md:pl-20 pr-4 w-full">
+              {/* Subtítulo */}
+              <h4 className="text-lg font-semibold text-neutral-800 dark:text-neutral-300 mb-4">
+                {item.subtitle}
+              </h4>
 
               {/* Conteúdo */}
               <div className="text-lg text-neutral-600 dark:text-neutral-400">
@@ -76,12 +76,12 @@ const Timeline = ({ data }: { data: TimelineEntry[] }) => {
           </div>
         ))}
 
-        {/* Linha de progresso */}
+        {/* Linha de progresso só em telas maiores */}
         <div
           style={{
             height: height + "px",
           }}
-          className="absolute md:left-8 left-8 top-0 overflow-hidden w-[2px] bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))] from-transparent from-[0%] via-neutral-200 dark:via-neutral-700 to-transparent to-[99%] [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)]"
+          className="hidden md:block absolute md:left-8 top-0 overflow-hidden w-[2px] bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))] from-transparent from-[0%] via-neutral-200 dark:via-neutral-700 to-transparent to-[99%] [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)]"
         >
           <motion.div
             style={{

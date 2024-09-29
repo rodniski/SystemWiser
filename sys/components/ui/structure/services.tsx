@@ -34,8 +34,6 @@ const Services: React.FC<ServicesProps> = ({
   servicesData,
   enableAnimation = false,
 }) => {
-  const isFiveCards = servicesData.length === 5;
-
   return (
     <section className="relative flex flex-col items-center min-h-screen text-whiteManuten">
       {/* Título da seção de serviços */}
@@ -54,55 +52,26 @@ const Services: React.FC<ServicesProps> = ({
         </h2>
       </motion.div>
 
-      {/* Flexbox para os serviços */}
-      <div className="flex flex-wrap justify-center gap-6 m-8 px-4 w-full">
-        {/* Renderiza os três primeiros cards (ou 2 se forem 4 cards) */}
-        <div className={`flex justify-center w-full gap-6 lg:w-full`}>
-          {servicesData
-            .slice(0, isFiveCards ? 3 : 2)
-            .map((service: ServiceData, index) => (
-              <motion.div
-                key={service.id || index}
-                variants={enableAnimation ? fadeInUp : {}}
-                initial={enableAnimation ? "hidden" : undefined}
-                whileInView={enableAnimation ? "visible" : undefined}
-                viewport={{ once: true, amount: 0.2 }}
-                className={`flex flex-col items-center justify-start w-full ${
-                  isFiveCards ? "lg:w-[30%]" : "lg:w-[45%]"
-                } h-full`}
-              >
-                <ServiceCard
-                  title={service.title}
-                  description={service.description}
-                  icon={service.icon}
-                  href={service.href}
-                />
-              </motion.div>
-            ))}
-        </div>
-
-        {/* Renderiza os dois últimos cards */}
-        <div className={`flex justify-center gap-6 w-full`}>
-          {servicesData
-            .slice(isFiveCards ? 3 : 2)
-            .map((service: ServiceData, index) => (
-              <motion.div
-                key={service.id || index + (isFiveCards ? 3 : 2)}
-                variants={enableAnimation ? fadeInUp : {}}
-                initial={enableAnimation ? "hidden" : undefined}
-                whileInView={enableAnimation ? "visible" : undefined}
-                viewport={{ once: true, amount: 0.2 }}
-                className="flex justify-center w-full lg:w-[45%] h-full"
-              >
-                <ServiceCard
-                  title={service.title}
-                  description={service.description}
-                  icon={service.icon}
-                  href={service.href}
-                />
-              </motion.div>
-            ))}
-        </div>
+      {/* Grid para os serviços */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4 w-full">
+        {/* Renderiza os serviços */}
+        {servicesData.map((service: ServiceData, index) => (
+          <motion.div
+            key={service.id || index}
+            variants={enableAnimation ? fadeInUp : {}}
+            initial={enableAnimation ? "hidden" : undefined}
+            whileInView={enableAnimation ? "visible" : undefined}
+            viewport={{ once: true, amount: 0.2 }}
+            className="w-full"
+          >
+            <ServiceCard
+              title={service.title}
+              description={service.description}
+              icon={service.icon}
+              href={service.href}
+            />
+          </motion.div>
+        ))}
       </div>
     </section>
   );

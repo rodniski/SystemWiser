@@ -1,19 +1,17 @@
-import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { Inter } from "next/font/google";
 import Header from "@/components/header";
 import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 import { ScrollProvider } from "@/lib/scroll-context";
-
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
+import { Metadata } from "next";
+import dynamic from "next/dynamic";
+const Footer = dynamic(() => import("@/components/ui/structure/footer"), {
+  ssr: false,
 });
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter", // Defina uma variável CSS personalizada para a fonte
+  display: "swap", // Isso melhora o desempenho de carregamento da fonte
 });
 
 export const metadata: Metadata = {
@@ -28,17 +26,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {" "}
+      <body className={`${inter.variable} antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          {" "}
           <ScrollProvider>
             <Header />
             {children}
           </ScrollProvider>
-        </ThemeProvider>
+        </ThemeProvider>{" "}
+        <footer>
+          <Footer />
+        </footer>
       </body>
     </html>
   );

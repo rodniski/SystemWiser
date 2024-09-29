@@ -22,9 +22,7 @@ const BentoSection = dynamic(() => import("@/components/ui/structure/bento"), {
 const Timeline = dynamic(() => import("@/components/ui/structure/timeline"), {
   ssr: false,
 });
-const Formulario = dynamic(() => import("@/components/ui/structure/form"), {
-  ssr: false,
-});
+
 
 const ProjectManagementPage = () => {
   return (
@@ -56,7 +54,7 @@ const ProjectManagementPage = () => {
       </section>
 
       {/* Main Content with Features and Services */}
-      <div className="px-36 flex flex-col gap-24">
+      <div className="px-4 sm:px-6 md:px-8 lg:px-12 flex flex-col gap-24">
         {/* Features Section */}
         <section aria-labelledby="features-section">
           <Feature
@@ -64,20 +62,18 @@ const ProjectManagementPage = () => {
             sectionTitle="Diferenciais Competitivos"
           />
         </section>
+
         {/* Timeline Section */}
         <section aria-labelledby="timeline-section">
           <Timeline data={projectTimeline} />
         </section>
-        
+
         {/* Services Section (Bento Layout) */}
         <section aria-labelledby="services-section">
           <BentoSection bentoItems={projectBentoItems} />
         </section>
 
-        {/* Form Section */}
-        <section aria-labelledby="form-section">
-          <Formulario />
-        </section>
+
       </div>
     </>
   );

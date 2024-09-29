@@ -20,9 +20,7 @@ const Feature = dynamic(() => import("@/components/ui/structure/feature"), {
 const BentoSection = dynamic(() => import("@/components/ui/structure/bento"), {
   ssr: false,
 });
-const Formulario = dynamic(() => import("@/components/ui/structure/form"), {
-  ssr: false,
-});
+
 const Timeline = dynamic(() => import("@/components/ui/structure/timeline"), {
   ssr: false,
 });
@@ -68,10 +66,7 @@ const SupportOnDemandPage = () => {
           <BentoSection bentoItems={supportBentoItems} />
         </section>
 
-        {/* Form Section */}
-        <section aria-labelledby="form-section">
-          <Formulario />
-        </section>
+
       </div>
     </>
   );
