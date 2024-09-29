@@ -3,7 +3,6 @@ import Header from "@/components/header";
 import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 import { ScrollProvider } from "@/lib/scroll-context";
-import { Metadata } from "next";
 import dynamic from "next/dynamic";
 const Footer = dynamic(() => import("@/components/ui/structure/footer"), {
   ssr: false,
