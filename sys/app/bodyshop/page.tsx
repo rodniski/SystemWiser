@@ -1,0 +1,96 @@
+"use client";
+import {
+  bodyshopHeroContent,
+  bodyshopFeatures,
+  bodyshopBentoItems,
+} from "@/constants/bodyshop";
+import dynamic from "next/dynamic";
+import Head from "next/head";
+import React from "react";
+
+// Importação dinâmica dos componentes
+const Hero = dynamic(() => import("@/components/ui/structure/hero"), {
+  ssr: false,
+});
+const Feature = dynamic(() => import("@/components/ui/structure/feature"), {
+  ssr: false,
+});
+const BentoSection = dynamic(() => import("@/components/ui/structure/bento"), {
+  ssr: false,
+});
+const Timeline = dynamic(() => import("@/components/ui/structure/timeline"), {
+  ssr: false,
+});
+const Formulario = dynamic(() => import("@/components/ui/structure/form"), {
+  ssr: false,
+});
+
+const BodyShopPage = () => {
+  return (
+    <>
+      <Head>
+        <title>BodyShop - Alocação de Profissionais</title>
+        <meta
+          name="description"
+          content="Conheça nossos serviços de alocação de profissionais especializados em TI, suporte e gerenciamento de projetos."
+        />
+      </Head>
+      {/* Hero Section */}
+      <section aria-labelledby="hero-section">
+        <Hero
+          subtitle={bodyshopHeroContent.subtitle}
+          title={bodyshopHeroContent.title}
+          description={bodyshopHeroContent.description}
+          ctaText={bodyshopHeroContent.ctaText}
+          animationType={bodyshopHeroContent.animationType} // Define o tipo de animação
+          lottieSrc={bodyshopHeroContent.lottieSrc} // Caso a animação seja Lottie
+          lottieData={bodyshopHeroContent.lottieData} // Caso a animação seja JSON
+        />
+      </section>
+      {/* BodyShop Explanation Section */}{" "}
+      <div className="px-36 flex flex-col gap-24">
+        <section className="pb-16 px-8 md:px-16 text-center">
+          <h2 className="text-2xl md:text-4xl font-bold text-black dark:text-white mb-6">
+            O Que é BodyShop?
+          </h2>
+          <div className="text-lg md:text-2xl text-gray-700 dark:text-gray-300 space-y-4">
+            <p>
+              BodyShop é o modelo de alocação temporária de profissionais, onde
+              fornecemos talentos especializados para atender a demandas
+              específicas, por períodos definidos ou projetos pontuais.
+            </p>
+            <p>
+              Flexibilidade para escalar equipes rapidamente conforme a
+              necessidade do negócio.
+            </p>
+            <p>
+              Sem custos trabalhistas de longo prazo, ideal para projetos
+              temporários ou com incertezas de duração.
+            </p>
+          </div>
+        </section>
+        {/* Main Content with Features and Services */}
+
+        {/* Features Section */}
+        <section aria-labelledby="features-section">
+          <Feature
+            features={bodyshopFeatures}
+            sectionTitle="Diferenciais Competitivos"
+          />
+        </section>
+
+        {/* Bento Section (Services) */}
+        <section aria-labelledby="services-section">
+          <BentoSection bentoItems={bodyshopBentoItems} />
+        </section>
+
+        {/* Form Section */}
+        <section aria-labelledby="form-section">
+          <Formulario />
+        </section>
+      </div>
+    </>
+  );
+};
+
+export default BodyShopPage;

@@ -1,5 +1,3 @@
-// Centralizado em /constants/interfaces.ts ou /components/interfaces.ts
-
 // Interface para dados de serviços
 export interface ServiceData {
   title: string;
@@ -52,7 +50,9 @@ export interface HeroProps {
   title: React.ReactNode; // ReactNode para suportar HTML dentro do título
   description: string;
   ctaText: string;
-  lottieSrc: string; // URL para animação Lottie
+  lottieSrc?: string; // URL para animação Lottie (opcional para o caso de JSON)
+  lottieData?: () => Promise<Record<string, unknown>>; // Função que importa dinamicamente o arquivo JSON de animação
+  animationType?: "lottie" | "json"; // Define o tipo de animação, 'lottie' ou 'json'
 }
 
 export interface TimelineEntry {

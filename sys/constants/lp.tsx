@@ -43,11 +43,11 @@ export const servicesData: ServiceData[] = [
     href: "/projetos",
   },
   {
-    title: "Consultoria de TI",
+    title: "BodyShop",
     description:
       "Alocação temporária de profissionais especializados conforme a demanda do seu negócio.",
     icon: IconUsers,
-    href: "/consultant",
+    href: "/bodyshop",
   },
   {
     title: "Suporte On-Demand",

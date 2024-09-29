@@ -1,14 +1,12 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
+import Lottie from "lottie-react"; // Dependência de Lottie
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { useScroll } from "@/lib/scroll-context";
 import { motion } from "framer-motion";
-import PropTypes from "prop-types";
 import { HeroProps } from "../../../types/interfaces";
-
-// Definindo os tipos das props
 
 const Hero: React.FC<HeroProps> = ({
   subtitle,
@@ -16,8 +14,23 @@ const Hero: React.FC<HeroProps> = ({
   description,
   ctaText,
   lottieSrc,
+  lottieData,
+  animationType = "lottie", // Define o tipo de animação, default para 'lottie'
 }) => {
   const { scrollToForm } = useScroll();
+  const [jsonAnimation, setJsonAnimation] = useState<Record<
+    string,
+    unknown
+  > | null>(null);
+
+  // Carregar a animação JSON dinamicamente
+  useEffect(() => {
+    if (animationType === "json" && lottieData) {
+      lottieData().then((animation) =>
+        setJsonAnimation(animation as Record<string, unknown>)
+      );
+    }
+  }, [animationType, lottieData]);
 
   return (
     <section className="relative overflow-hidden py-24 lg:py-32 w-screen h-screen flex items-center justify-center">
@@ -72,27 +85,17 @@ const Hero: React.FC<HeroProps> = ({
           </motion.div>
         </div>
 
-        {/* Animação Lottie */}
-        <div className="w-full max-w-xs md:max-w-md lg:max-w-lg mt-10 md:mt-0">
-          <DotLottieReact
-            src={lottieSrc}
-            loop
-            autoplay
-            width={400}
-            height={600}
-          />
+        {/* Animação Lottie ou JSON */}
+        <div className="w-full max-w-xs md:max-w-md lg:max-w-lg mt-10 md:mt-0 flex items-center justify-center">
+          {animationType === "lottie" && lottieSrc ? (
+            <DotLottieReact src={lottieSrc} loop autoplay width={400} height={600} />
+          ) : animationType === "json" && jsonAnimation ? (
+            <Lottie animationData={jsonAnimation} loop autoplay />
+          ) : null}
         </div>
       </div>
     </section>
   );
-};
-
-Hero.propTypes = {
-  subtitle: PropTypes.string.isRequired,
-  title: PropTypes.node.isRequired,
-  description: PropTypes.string.isRequired,
-  ctaText: PropTypes.string.isRequired,
-  lottieSrc: PropTypes.string.isRequired,
 };
 
 export default Hero;
