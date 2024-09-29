@@ -8,12 +8,7 @@ import {
 import dynamic from "next/dynamic";
 import Head from "next/head";
 import React from "react";
-
-// Importação dinâmica dos componentes
-
-const Hero = dynamic(() => import("@/components/ui/structure/hero"), {
-  ssr: false,
-});
+import Hero from "@/components/ui/structure/hero";
 const ShootingStars = dynamic(() => import("@/components/ui/shooting-stars"), {
   ssr: false,
 });

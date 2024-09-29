@@ -3,11 +3,9 @@ import { homeHeroContent, philosophy, servicesData } from "@/constants/lp";
 import dynamic from "next/dynamic";
 import Head from "next/head";
 import React from "react";
-
+import Hero from "@/components/ui/structure/hero";
 // Importação dinâmica dos componentes
-const Hero = dynamic(() => import("@/components/ui/structure/hero"), {
-  ssr: false,
-});
+
 const Feature = dynamic(() => import("@/components/ui/structure/feature"), {
   ssr: false,
 });

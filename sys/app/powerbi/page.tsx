@@ -4,11 +4,7 @@ import dynamic from "next/dynamic";
 import Head from "next/head";
 import React from "react";
 import { biHeroContent, biFeatures, biBentoItems } from "@/constants/bi";
-
-// Importação dinâmica dos componentes
-const Hero = dynamic(() => import("@/components/ui/structure/hero"), {
-  ssr: false,
-});
+import Hero from "@/components/ui/structure/hero";
 const Feature = dynamic(() => import("@/components/ui/structure/feature"), {
   ssr: false,
 });
