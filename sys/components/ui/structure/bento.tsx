@@ -42,12 +42,15 @@ export const BentoGridItem = ({
   lottie?: string;
   lottieData?: () => Promise<unknown>; // Alterado para aceitar unknown
 }) => {
-  const [jsonAnimation, setJsonAnimation] = useState<Record<string, unknown> | null>(null);
+  const [jsonAnimation, setJsonAnimation] = useState<Record<
+    string,
+    unknown
+  > | null>(null);
 
   useEffect(() => {
     if (iconType === "json" && lottieData) {
-      lottieData().then((animation) =>
-        setJsonAnimation(animation as Record<string, unknown>) // Type assertion aplicado
+      lottieData().then(
+        (animation) => setJsonAnimation(animation as Record<string, unknown>) // Type assertion aplicado
       );
     }
   }, [iconType, lottieData]);
@@ -59,7 +62,7 @@ export const BentoGridItem = ({
         className
       )}
     >
-      <div className="w-full h-40">
+      <div className="w-full h-40 flex items-center justify-center">
         {iconType === "lottie" ? (
           <DotLottieReact
             src={lottie}
@@ -92,8 +95,8 @@ export const BentoGridItem = ({
 
 const BentoSection: React.FC<BentoSectionProps> = ({ bentoItems }) => {
   return (
-    <section className="relative flex flex-col items-stretch min-h-screen text-whiteManuten">
-      <BentoGrid className="my-10 gap-6 z-10">
+    <section className="relative flex flex-col  items-stretch min-h-screen text-whiteManuten">
+      <BentoGrid className="my-10 gap-6 z-10 ">
         {bentoItems.map((item) => (
           <BentoGridItem
             key={item.id}
@@ -106,7 +109,8 @@ const BentoSection: React.FC<BentoSectionProps> = ({ bentoItems }) => {
             className={cn(
               item.id === "integracao-sistemas" ||
                 item.id === "design-ux-ui" ||
-                item.id === "consultoria-gerenciamento"
+                item.id === "consultoria-gerenciamento" ||
+                item.id === "integracao-novos-sistemas"
                 ? "md:col-span-2"
                 : ""
             )}
