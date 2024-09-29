@@ -3,20 +3,10 @@ import React, { useEffect, useId, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useOutsideClick } from "@/hooks/use-outside-click"; // Certifique-se de que este hook está implementado
 import { IconWindowMaximize } from "@tabler/icons-react";
-
-interface Feature {
-  title: string;
-  description: string;
-  content: JSX.Element; // Alterado de string para JSX.Element
-  icon: JSX.Element; // O ícone também já é um elemento JSX
-}
-interface FeatureSectionProps {
-  features: Feature[]; // Conjunto de dados
-  sectionTitle: string; // Título da seção
-}
+import { FeatureSectionProps, FeatureInterface } from "../../../types/interfaces";
 
 const Feature: React.FC<FeatureSectionProps> = ({ features, sectionTitle }) => {
-  const [active, setActive] = useState<Feature | null>(null);
+  const [active, setActive] = useState<FeatureInterface | null>(null);
   const id = useId();
   const ref = useRef<HTMLDivElement>(null);
 

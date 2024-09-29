@@ -1,3 +1,5 @@
+import { ServiceData } from "@/types/interfaces";
+
 //HEROSECTION.TSX:
 export const homeHeroContent = {
   subtitle: "Tecnologia Inteligente para Impulsionar Seu Negócio",
@@ -24,12 +26,7 @@ import {
   IconLifebuoy,
   IconUsers,
 } from "@tabler/icons-react";
-interface ServiceData {
-  title: string;
-  description: string;
-  icon: React.ElementType; // Tipo do ícone (componente React)
-  href?: string;
-}
+
 export const servicesData: ServiceData[] = [
   {
     title: "Desenvolvimento de Software",
@@ -76,6 +73,7 @@ import {
   IconClock,
   IconCurrencyDollar,
 } from "@tabler/icons-react";
+
 export const philosophy = [
   {
     title: "O que Fazemos?",

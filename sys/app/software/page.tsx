@@ -1,6 +1,10 @@
 "use client";
 
-import { servicesData, softwareHeroContent } from "@/constants/software";
+import {
+  bentoItems,
+  servicesData,
+  softwareHeroContent,
+} from "@/constants/software";
 import dynamic from "next/dynamic";
 import Head from "next/head";
 import React from "react";
@@ -23,7 +27,7 @@ const StarsBackground = dynamic(
 const Services = dynamic(() => import("@/components/ui/structure/services"), {
   ssr: false,
 });
-const Bento = dynamic(() => import("@/components/software/bento"), {
+const BentoSection = dynamic(() => import("@/components/ui/structure/bento"), {
   ssr: false,
 });
 const Formulario = dynamic(() => import("@/components/ui/structure/form"), {
@@ -61,11 +65,15 @@ const page = () => {
         </section>
 
         <section aria-labelledby="services-section">
-        <Services servicesData={servicesData} isLandingPage={false} enableAnimation={true} />
+          <Services
+            servicesData={servicesData}
+            isLandingPage={false}
+            enableAnimation={true}
+          />
         </section>
 
         <section aria-labelledby="bento-section">
-          <Bento />
+          <BentoSection bentoItems={bentoItems} />
         </section>
 
         <section aria-labelledby="form-section">

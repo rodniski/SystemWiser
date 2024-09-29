@@ -6,15 +6,9 @@ import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { useScroll } from "@/lib/scroll-context";
 import { motion } from "framer-motion";
 import PropTypes from "prop-types";
+import { HeroProps } from "../../../types/interfaces";
 
 // Definindo os tipos das props
-interface HeroProps {
-  subtitle: string;
-  title: React.ReactNode;
-  description: string;
-  ctaText: string;
-  lottieSrc: string;
-}
 
 const Hero: React.FC<HeroProps> = ({
   subtitle,

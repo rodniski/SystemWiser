@@ -1,6 +1,9 @@
+import { Bento, Service } from "@/types/interfaces";
+
 //HERO SECTION
 export const softwareHeroContent = {
-  subtitle: "Desenvolvimento personalizado para levar o seu negócio ao próximo nível",
+  subtitle:
+    "Desenvolvimento personalizado para levar o seu negócio ao próximo nível",
   title: (
     <>
       Soluções digitais personalizadas para{" "}
@@ -18,11 +21,7 @@ export const softwareHeroContent = {
 };
 
 // SERVICES
-export interface Service {
-  id: string;
-  title: string;
-  description: string;
-}
+
 export const servicesData: Service[] = [
   {
     id: "applicativos-personalizados",
@@ -61,13 +60,6 @@ import {
   IconBoxAlignRightFilled,
 } from "@tabler/icons-react";
 
-export interface Bento {
-  id: string;
-  title: string;
-  description: string;
-  lottie: string;
-  icon: React.ReactNode;
-}
 export const bentoItems: Bento[] = [
   {
     id: "manutencao-suporte",
@@ -75,6 +67,7 @@ export const bentoItems: Bento[] = [
     description:
       "Fornecemos manutenção contínua e suporte técnico especializado para garantir que seu software funcione de maneira eficiente e sem interrupções.",
     icon: <IconClipboardCopy className="h-4 w-4 text-neutral-500" />,
+    iconType: "lottie",
     lottie: "/lottie/software/maintenance.lottie",
   },
   {
@@ -83,6 +76,7 @@ export const bentoItems: Bento[] = [
     description:
       "Facilitamos a comunicação entre diferentes plataformas para que seu sistema seja mais integrado e eficiente.",
     icon: <IconTableColumn className="h-4 w-4 text-neutral-500" />,
+    iconType: "lottie",
     lottie: "/lottie/software/connect.lottie",
   },
   {
@@ -91,6 +85,7 @@ export const bentoItems: Bento[] = [
     description:
       "Identificação e resolução de bugs para garantir a estabilidade e eficiência do sistema.",
     icon: <IconFileBroken className="h-4 w-4 text-neutral-500" />,
+    iconType: "lottie",
     lottie: "/lottie/software/bugs.lottie",
   },
   {
@@ -99,6 +94,7 @@ export const bentoItems: Bento[] = [
     description:
       "Adicionamos novas funcionalidades e mantemos o software atualizado com as melhores práticas do mercado.",
     icon: <IconSignature className="h-4 w-4 text-neutral-500" />,
+    iconType: "lottie",
     lottie: "/lottie/software/update.lottie",
   },
 
@@ -108,6 +104,7 @@ export const bentoItems: Bento[] = [
     description:
       "Automatizamos fluxos de trabalho, reduzindo tarefas manuais e aumentando a produtividade.",
     icon: <IconArrowWaveRightUp className="h-4 w-4 text-neutral-500" />,
+    iconType: "lottie",
     lottie: "/lottie/software/robot.lottie",
   },
   {
@@ -116,6 +113,7 @@ export const bentoItems: Bento[] = [
     description:
       "Desenvolvemos interfaces intuitivas e experiências de usuário envolventes, focadas em eficiência e usabilidade.",
     icon: <IconBoxAlignRightFilled className="h-4 w-4 text-neutral-500" />,
+    iconType: "lottie",
     lottie: "/lottie/software/ux.lottie",
   },
   {
@@ -124,6 +122,7 @@ export const bentoItems: Bento[] = [
     description:
       "Criamos plataformas SaaS personalizadas, facilitando a entrega de serviços online para seus clientes.",
     icon: <IconBoxAlignTopLeft className="h-4 w-4 text-neutral-500" />,
+    iconType: "lottie",
     lottie: "/lottie/software/saas.lottie",
   },
 ];
