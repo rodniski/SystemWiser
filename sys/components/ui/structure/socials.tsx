@@ -13,7 +13,7 @@ const Socials = () => {
       aria-label="Converse pelo WhatsApp"
     >
       <a
-        href="https://wa.me/5511999999999" // Substitua pelo seu número com código do país
+        href="https://wa.me/5511930156720" // Substitua pelo seu número com código do país
         target="_blank"
         rel="noopener noreferrer"
       >
