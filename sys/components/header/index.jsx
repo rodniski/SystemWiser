@@ -99,7 +99,7 @@ const Header = () => {
 
       <div className="z-50 flex items-center justify-center">
         <Button variant={"ghost"} size={"Icon"} className="p-2">
-          <a href="/contact">
+          <a href="/contato">
             <IconPhone />
           </a>
         </Button>
