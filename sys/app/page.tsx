@@ -4,6 +4,8 @@ import dynamic from "next/dynamic";
 import Head from "next/head";
 import React from "react";
 import Hero from "@/components/ui/structure/hero";
+import { Areas } from "@/components/ui/structure/areas";
+import Home from "@/components/ui/structure/home";
 // Importação dinâmica dos componentes
 
 const Feature = dynamic(() => import("@/components/ui/structure/feature"), {
@@ -33,12 +35,11 @@ const Page = () => {
 
       {/* Hero Section */}
       <section aria-labelledby="hero-section">
-        <Hero
+        <Home
           subtitle={homeHeroContent.subtitle}
           title={homeHeroContent.title}
           description={homeHeroContent.description}
           ctaText={homeHeroContent.ctaText}
-          lottieSrc={homeHeroContent.lottieSrc}
         />
       </section>
 

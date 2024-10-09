@@ -141,12 +141,12 @@ const Header = () => {
               <Link href={item.href} role="menuitem">
                 {" "}
                 {/* Corrigido para <Link> com role adequado */}
-                <a
+                <p
                   onClick={() => setIsOpen(false)}
                   className="text-2xl sm:text-3xl md:text-4xl font-bold font-mono dark:text-primary text-black hover:italic transition"
                 >
                   {item.title}
-                </a>
+                </p>
               </Link>
             </motion.li>
           ))}

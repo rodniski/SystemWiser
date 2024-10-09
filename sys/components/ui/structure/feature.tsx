@@ -2,8 +2,11 @@
 import React, { useEffect, useId, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useOutsideClick } from "@/hooks/use-outside-click";
-import { IconWindowMaximize } from "@tabler/icons-react";
-import { FeatureSectionProps, FeatureInterface } from "../../../types/interfaces";
+import { IconWindowMaximize, IconX } from "@tabler/icons-react";
+import {
+  FeatureSectionProps,
+  FeatureInterface,
+} from "../../../types/interfaces";
 
 const Feature: React.FC<FeatureSectionProps> = ({ features, sectionTitle }) => {
   const [active, setActive] = useState<FeatureInterface | null>(null);
@@ -51,21 +54,30 @@ const Feature: React.FC<FeatureSectionProps> = ({ features, sectionTitle }) => {
       {/* Modal */}
       <AnimatePresence>
         {active && (
-          <div className="fixed inset-0 grid place-items-center z-[100] px-4">
+          <div className="fixed inset-0 grid place-items-center z-[100] px-5">
             <motion.div
               layoutId={`card-${active.title}-${id}`}
               ref={ref}
-              className="w-full max-w-[95%] md:max-w-[500px] h-full md:h-auto flex flex-col bg-slate-200 dark:bg-slate-900 sm:rounded-3xl overflow-hidden"
+              className="relative rounded-lg w-full max-w-[95%] md:max-w-[550px] max-h-[60vh] md:h-fit flex flex-col bg-slate-200 dark:bg-slate-900 sm:rounded-3xl p-6 md:p-8 overflow-auto md:overflow-visible"
             >
+              {/* Botão X para fechar */}
+              <button
+                onClick={() => setActive(null)}
+                className="absolute top-3 right-3 text-zinc-500 hover:text-red-500"
+                aria-label="Close modal"
+              >
+                <IconX size={24} />
+              </button>
+
               {/* Ícone */}
-              <div className="flex justify-center items-center p-6">
+              <div className="flex justify-center items-center">
                 <div className="text-4xl md:text-6xl filter drop-shadow-[0_0_5px_#00d2ff] border border-cyan-700 dark:border-cyan-200 rounded-full p-4 dark:text-cyan-200 text-cyan-700">
                   {active.icon}
                 </div>
               </div>
 
               {/* Conteúdo */}
-              <div className="flex flex-col items-center text-center px-6">
+              <div className="flex flex-col gap-3 md:gap-5 items-center text-center  max-h-[55vh] md:max-h-none md:overflow-visible">
                 <motion.h3
                   layoutId={`title-${active.title}-${id}`}
                   className="font-medium text-neutral-900 dark:text-neutral-200 text-2xl"
@@ -74,7 +86,7 @@ const Feature: React.FC<FeatureSectionProps> = ({ features, sectionTitle }) => {
                 </motion.h3>
                 <motion.p
                   layoutId={`description-${active.title}-${id}`}
-                  className="text-sm md:text-base text-muted-foreground"
+                  className="text-base dark:text-blue-300/90 text-blue-800/90 font-medium"
                 >
                   {active.description}
                 </motion.p>
@@ -83,7 +95,7 @@ const Feature: React.FC<FeatureSectionProps> = ({ features, sectionTitle }) => {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  className="text-xs text-left md:text-sm lg:text-lg pt-4 flex flex-col gap-4 overflow-auto dark:text-neutral-300 max-h-[200px] md:max-h-[400px]"
+                  className="text-base text-center md:text-sm lg:text-lg pt-4 flex flex-col gap-4 dark:text-neutral-300 max-h-[200px] md:max-h-none"
                 >
                   {active.content}
                 </motion.div>

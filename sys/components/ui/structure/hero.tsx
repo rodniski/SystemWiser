@@ -41,7 +41,7 @@ const Hero: React.FC<HeroProps> = ({
         <div className="text-center md:text-left">
           {/* Título */}
           <motion.h1
-            className="text-3xl sm:text-4xl md:text-5xl font-bold text-black dark:text-white leading-tight"
+            className="text-3xl sm:text-4xl md:text-7xl font-bold text-black dark:text-white leading-tight"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.0, ease: "easeInOut" }}
@@ -51,7 +51,7 @@ const Hero: React.FC<HeroProps> = ({
 
           {/* Subtítulo */}
           <motion.p
-            className="mt-2 text-sm sm:text-base md:text-2xl text-black/80 dark:text-white/80"
+            className="mt-2 text-sm sm:text-base md:text-3xl text-black/80 dark:text-white/80"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.2 }}
@@ -61,7 +61,7 @@ const Hero: React.FC<HeroProps> = ({
 
           {/* Descrição */}
           <motion.p
-            className="mt-4 text-base sm:text-lg md:text-xl text-muted-foreground"
+            className="mt-4 text-base sm:text-lg md:text-2xl text-muted-foreground"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.4 }}
@@ -88,7 +88,7 @@ const Hero: React.FC<HeroProps> = ({
         </div>
 
         {/* Animação Lottie ou JSON */}
-        <div className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg flex items-center justify-center">
+        <div className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-full flex items-center justify-center">
           {animationType === "lottie" && lottieSrc ? (
             <DotLottieReact
               src={lottieSrc}
@@ -96,14 +96,14 @@ const Hero: React.FC<HeroProps> = ({
               autoplay
               width="100%"
               height="100%"
-              className="w-60 md:w-full "
+              className="md:w-full "
             />
           ) : animationType === "json" && jsonAnimation ? (
             <Lottie
               animationData={jsonAnimation}
               loop
               autoplay
-              className="max-w-60 md:max-w-full"
+              className=" md:max-w-full"
             />
           ) : null}
         </div>
