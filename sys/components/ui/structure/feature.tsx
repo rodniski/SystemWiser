@@ -83,7 +83,7 @@ const Feature: React.FC<FeatureSectionProps> = ({ features, sectionTitle }) => {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  className="text-xs text-left md:text-sm lg:text-lg pt-4 flex flex-col gap-4 overflow-auto dark:text-neutral-300 max-h-[200px] md:max-h-[400px] [mask:linear-gradient(to_bottom,white,white,transparent)]"
+                  className="text-xs text-left md:text-sm lg:text-lg pt-4 flex flex-col gap-4 overflow-auto dark:text-neutral-300 max-h-[200px] md:max-h-[400px]"
                 >
                   {active.content}
                 </motion.div>
