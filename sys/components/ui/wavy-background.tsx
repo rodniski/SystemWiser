@@ -1,9 +1,21 @@
 "use client";
 import { cn } from "@/lib/utils";
-import React, { useEffect, useRef, useState } from "react";
+import React, { HTMLAttributes, useEffect, useRef, useState } from "react";
 import { createNoise3D } from "simplex-noise";
 
-export const WavyBackground = ({
+interface WavyBackgroundProps extends HTMLAttributes<HTMLDivElement> {
+  children?: React.ReactNode;
+  className?: string;
+  containerClassName?: string;
+  colors?: string[];
+  waveWidth?: number;
+  backgroundFill?: string;
+  blur?: number;
+  speed?: "slow" | "fast";
+  waveOpacity?: number;
+}
+
+export const WavyBackground: React.FC<WavyBackgroundProps> = ({
   children,
   className,
   containerClassName,
@@ -14,28 +26,13 @@ export const WavyBackground = ({
   speed = "fast",
   waveOpacity = 0.5,
   ...props
-}: {
-  children?: any;
-  className?: string;
-  containerClassName?: string;
-  colors?: string[];
-  waveWidth?: number;
-  backgroundFill?: string;
-  blur?: number;
-  speed?: "slow" | "fast";
-  waveOpacity?: number;
-  [key: string]: any;
 }) => {
   const noise = createNoise3D();
-  let w: number,
-    h: number,
-    nt: number,
-    i: number,
-    x: number,
-    ctx: any,
-    canvas: any;
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const getSpeed = () => {
+  const [isSafari, setIsSafari] = useState(false);
+  let animationId: number;
+
+  const getSpeed = (): number => {
     switch (speed) {
       case "slow":
         return 0.001;
@@ -47,18 +44,44 @@ export const WavyBackground = ({
   };
 
   const init = () => {
-    canvas = canvasRef.current;
-    ctx = canvas.getContext("2d");
-    w = ctx.canvas.width = window.innerWidth;
-    h = ctx.canvas.height = window.innerHeight;
-    ctx.filter = `blur(${blur}px)`;
-    nt = 0;
-    window.onresize = function () {
-      w = ctx.canvas.width = window.innerWidth;
-      h = ctx.canvas.height = window.innerHeight;
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const updateCanvasSize = () => {
+      ctx.canvas.width = window.innerWidth;
+      ctx.canvas.height = window.innerHeight;
       ctx.filter = `blur(${blur}px)`;
     };
+
+    updateCanvasSize();
+    let nt = 0;
+
+    const render = () => {
+      ctx.fillStyle = backgroundFill || "black";
+      ctx.globalAlpha = waveOpacity;
+      ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+      drawWave(
+        ctx,
+        nt,
+        ctx.canvas.width,
+        ctx.canvas.height,
+        waveColors,
+        waveWidth || 50
+      );
+      nt += getSpeed();
+      animationId = requestAnimationFrame(render);
+    };
+
+    window.addEventListener("resize", updateCanvasSize);
     render();
+
+    return () => {
+      window.removeEventListener("resize", updateCanvasSize);
+      cancelAnimationFrame(animationId);
+    };
   };
 
   const waveColors = colors ?? [
@@ -68,44 +91,37 @@ export const WavyBackground = ({
     "#e879f9",
     "#22d3ee",
   ];
-  const drawWave = (n: number) => {
-    nt += getSpeed();
-    for (i = 0; i < n; i++) {
+
+  const drawWave = (
+    ctx: CanvasRenderingContext2D,
+    nt: number,
+    w: number,
+    h: number,
+    waveColors: string[],
+    waveWidth: number
+  ) => {
+    for (let i = 0; i < waveColors.length; i++) {
       ctx.beginPath();
-      ctx.lineWidth = waveWidth || 50;
+      ctx.lineWidth = waveWidth;
       ctx.strokeStyle = waveColors[i % waveColors.length];
-      for (x = 0; x < w; x += 5) {
-        var y = noise(x / 800, 0.3 * i, nt) * 100;
-        ctx.lineTo(x, y + h * 0.5); // adjust for height, currently at 50% of the container
+      for (let x = 0; x < w; x += 5) {
+        const y = noise(x / 800, 0.3 * i, nt) * 100;
+        ctx.lineTo(x, y + h * 0.5); // Ajusta a altura da onda
       }
       ctx.stroke();
       ctx.closePath();
     }
   };
 
-  let animationId: number;
-  const render = () => {
-    ctx.fillStyle = backgroundFill || "black";
-    ctx.globalAlpha = waveOpacity || 0.5;
-    ctx.fillRect(0, 0, w, h);
-    drawWave(5);
-    animationId = requestAnimationFrame(render);
-  };
-
   useEffect(() => {
     init();
-    return () => {
-      cancelAnimationFrame(animationId);
-    };
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const [isSafari, setIsSafari] = useState(false);
   useEffect(() => {
-    // I'm sorry but i have got to support it on safari.
     setIsSafari(
       typeof window !== "undefined" &&
-        navigator.userAgent.includes("Safari") &&
-        !navigator.userAgent.includes("Chrome")
+        /Safari/.test(navigator.userAgent) &&
+        !/Chrome/.test(navigator.userAgent)
     );
   }, []);
 

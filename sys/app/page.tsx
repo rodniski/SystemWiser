@@ -3,8 +3,6 @@ import { homeHeroContent, philosophy, servicesData } from "@/constants/lp";
 import dynamic from "next/dynamic";
 import Head from "next/head";
 import React from "react";
-import Hero from "@/components/ui/structure/hero";
-import { Areas } from "@/components/ui/structure/areas";
 import Home from "@/components/ui/structure/home";
 // Importação dinâmica dos componentes
 

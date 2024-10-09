@@ -17,13 +17,14 @@ export const metadata = {
   title: "System Wiser - Sua Vantagem Tecnológica",
   description:
     "Conheça nossos serviços de TI e como podemos ajudar a sua empresa",
+  metadataBase: new URL("https://systemwiser.com"), // Definindo a URL base do site
   openGraph: {
     title: "System Wiser - Sua Vantagem Tecnológica",
     description: "Conheça nossos serviços de TI",
-    url: "https://system-wiser.vercel.app/",
+    url: "https://systemwiser.com/",
     images: [
       {
-        url: "/logo/favicon.png",
+        url: "/logo/favicon.png", // Caminho relativo
         width: 600,
         height: 600,
         alt: "Logo da System Wiser",
