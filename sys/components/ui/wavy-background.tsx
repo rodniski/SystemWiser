@@ -2,6 +2,7 @@
 import { cn } from "@/lib/utils";
 import React, { HTMLAttributes, useEffect, useRef, useState } from "react";
 import { createNoise3D } from "simplex-noise";
+import { useTheme } from "next-themes";
 
 interface WavyBackgroundProps extends HTMLAttributes<HTMLDivElement> {
   children?: React.ReactNode;
@@ -27,6 +28,7 @@ export const WavyBackground: React.FC<WavyBackgroundProps> = ({
   waveOpacity = 0.5,
   ...props
 }) => {
+  const { theme } = useTheme(); // Acessa o tema atual
   const noise = createNoise3D();
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isSafari, setIsSafari] = useState(false);
@@ -60,9 +62,13 @@ export const WavyBackground: React.FC<WavyBackgroundProps> = ({
     let nt = 0;
 
     const render = () => {
-      ctx.fillStyle = backgroundFill || "black";
-      ctx.globalAlpha = waveOpacity;
+      // Define a cor de fundo com base no tema
+      ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height); // Limpa o canvas antes de redesenhar
+      ctx.fillStyle = backgroundFill || (theme === "light" ? "white" : "black");
+      ctx.globalAlpha = 1; // Garante que não haja opacidade no fundo
       ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+
+      // Desenha as ondas
       drawWave(
         ctx,
         nt,
@@ -104,6 +110,7 @@ export const WavyBackground: React.FC<WavyBackgroundProps> = ({
       ctx.beginPath();
       ctx.lineWidth = waveWidth;
       ctx.strokeStyle = waveColors[i % waveColors.length];
+      ctx.globalAlpha = waveOpacity; // Define a opacidade das ondas
       for (let x = 0; x < w; x += 5) {
         const y = noise(x / 800, 0.3 * i, nt) * 100;
         ctx.lineTo(x, y + h * 0.5); // Ajusta a altura da onda
@@ -115,7 +122,7 @@ export const WavyBackground: React.FC<WavyBackgroundProps> = ({
 
   useEffect(() => {
     init();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [theme]); // Adiciona o tema como dependência para atualizar quando o tema mudar
 
   useEffect(() => {
     setIsSafari(
