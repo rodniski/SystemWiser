@@ -35,7 +35,7 @@ const Hero: React.FC<HeroProps> = ({
   }, [animationType, lottieData]);
 
   return (
-    <section className="relative overflow-hidden py-16 px-4 sm:py-24 md:py-32 w-full flex items-center justify-center md:h-screen">
+    <section className="relative overflow-hidden py-24 px-4 sm:py-24 md:py-32 w-full flex items-center justify-center md:h-screen">
       <div className="flex flex-col-reverse md:flex-row justify-center items-center max-w-7xl mx-auto space-y-6 md:space-y-0 md:space-x-10">
         {/* Texto Principal */}
         <div className="text-center md:text-left">

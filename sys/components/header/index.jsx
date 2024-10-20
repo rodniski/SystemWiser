@@ -10,12 +10,19 @@ import { ModeToggle } from "./toggle";
 import Image from "next/image";
 import { IconPhone } from "@tabler/icons-react";
 import { Button } from "../ui/button";
+import { useTheme } from "next-themes";
 
 // Definindo as PropTypes
 const Logo = memo(({ alt, width, height, className }) => {
+  const { theme } = useTheme();
+
+  // Defina o caminho do logo com base no tema
+  const logoSrc =
+    theme === "light" ? "/logo/tcSqDkGrBl.png" : "/logo/tcSqLtGrBl.png";
+
   return (
     <Image
-      src="/logo/brSqDkBl.png"
+      src={logoSrc}
       alt={alt}
       width={width}
       height={height}
@@ -85,14 +92,14 @@ const Header = () => {
   };
 
   return (
-    <header className="fixed top-0 left-0 w-full h-20 md:h-24 backdrop-blur-xl border-b border-zinc-200 dark:border-border shadow-sm text-foreground flex justify-between items-center px-6 md:px-12 z-50">
-      <div className="text-xl font-bold w-24 md:w-36">
+    <header className="fixed top-0 left-0 w-full h-20 md:h-16 backdrop-blur-xl border-b border-zinc-200 dark:border-border shadow-sm text-foreground flex justify-between items-center px-6 md:px-12 z-50">
+      <div className="text-xl font-bold w-24 md:w-56">
         <a href="/">
           <Logo
             alt="System Wiser Logo"
-            width={100}
-            height={50}
-            className="w-20 lg:w-36"
+            width={300}
+            height={150}
+            className="w-20 lg:w-56"
           />
         </a>
       </div>
@@ -128,7 +135,7 @@ const Header = () => {
             alt="System Wiser Logo"
             width={350}
             height={75}
-            className="w-36 absolute top-9"
+            className="w-64 absolute top-9 left-1/2 -translate-x-1/2"
           />
         </a>
 

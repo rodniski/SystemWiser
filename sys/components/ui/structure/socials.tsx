@@ -9,7 +9,7 @@ const Socials = () => {
       asChild
       variant="whatsapp"
       size={"icon"}
-      className="flex justify-center items-center"
+      className="flex justify-center items-center text-foreground/80"
       aria-label="Converse pelo WhatsApp"
     >
       <a
@@ -24,7 +24,7 @@ const Socials = () => {
       asChild
       variant="outline"
       size={"icon"}
-      className="flex justify-center items-center border-blue-500 hover:bg-blue-500"
+      className="flex justify-center items-center border-blue-500 hover:bg-blue-500 text-foreground/80"
       aria-label="Conecte-se no LinkedIn"
     >
       <a
@@ -39,7 +39,7 @@ const Socials = () => {
       asChild
       variant="outline"
       size={"icon"}
-      className="flex justify-center items-center  border-purple-500 hover:bg-purple-500"
+      className="flex justify-center items-center  border-purple-500 hover:bg-purple-500 text-foreground/80"
       aria-label="Nos siga no Instagram"
     >
       <a
@@ -54,7 +54,7 @@ const Socials = () => {
       asChild
       variant="outline"
       size={"icon"}
-      className="flex justify-center items-center  border-red-500 hover:bg-red-500"
+      className="flex justify-center items-center  border-red-500 hover:bg-red-500 text-foreground/80"
       aria-label="Nos envie um e-mail!"
     >
       <a

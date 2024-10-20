@@ -16,11 +16,19 @@ const Home: React.FC<HeroProps> = ({
   return (
     <div className="relative">
       {/* Background ondulado para a home */}
-      <WavyBackground className="max-w-4xl mx-auto pb-40">
-        <section className="relative overflow-hidden py-16 px-4 sm:py-24 md:py-32 w-full flex items-center justify-center md:h-screen">
+      <WavyBackground className="max-w-4xl h-screen mx-auto pb-40">
+        <section className="relative overflow-hidden px-5 w-full flex items-center justify-center h-screen">
           <div className="flex flex-col justify-center items-center max-w-7xl mx-auto space-y-6 text-center">
             {/* Título */}
             <Areas />
+            <motion.h2
+              className="text-xl md:text-2xl font-light text-foreground leading-tight"
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.0, ease: "easeInOut" }}
+            >
+              {subtitle}
+            </motion.h2>
             <motion.h1
               className="text-4xl md:text-7xl font-bold text-black dark:text-white leading-tight"
               initial={{ opacity: 0, y: 50 }}
@@ -30,19 +38,9 @@ const Home: React.FC<HeroProps> = ({
               {title}
             </motion.h1>
 
-            {/* Subtítulo */}
-            <motion.p
-              className="mt-2 text-xl sm:text-base md:text-3xl text-black/80 dark:text-white/80"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.2, delay: 0.2 }}
-            >
-              {subtitle}
-            </motion.p>
-
             {/* Descrição */}
             <motion.p
-              className="mt-4 text-xl sm:text-lg md:text-2xl text-foreground"
+              className="mt-4 text-xl sm:text-lg font-light md:text-2xl text-foreground"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1.2, delay: 0.4 }}
